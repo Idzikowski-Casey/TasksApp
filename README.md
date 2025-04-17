@@ -1,9 +1,12 @@
-# Android Example
+# TasksApp
 
 ## What is this? 
 
 This repository is a practical example of an Android app using modern architecture and best
-practices. 
+practices.
+
+This app is a simple task management app that runs off of on device storage. Is meant to be basic
+to highlight some fundamentals. 
 
 ## Architecture and Tenets
 
