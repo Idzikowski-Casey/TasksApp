@@ -13,6 +13,9 @@
             <option value="$PROJECT_DIR$/Greeting" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/di" />
+            <option value="$PROJECT_DIR$/molecule-presenter" />
+            <option value="$PROJECT_DIR$/molecule-presenter/api" />
+            <option value="$PROJECT_DIR$/molecule-presenter/impl" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/navigation/api" />
             <option value="$PROJECT_DIR$/navigation/impl" />
