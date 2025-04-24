@@ -2,6 +2,7 @@ package com.data.api.datasource
 
 import com.data.api.models.TaskModel
 import com.data.api.models.TasksModel
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * An in-memory Data source for tasks. Stores all tasks the user has created during app session.
@@ -11,13 +12,13 @@ interface TasksDataSource {
     /**
      * Returns all tasks the user has created.
      */
-    fun getTasks(): TasksModel
+    fun getTasks(): StateFlow<TasksModel>
 
     /**
      * Returns a single task by its id.
      * @param id The id of the task to retrieve.
      */
-    fun getTask(id: String): TaskModel
+    fun getTask(id: String): StateFlow<TaskModel>
 
     /**
      * Adds a new task to the data source.

@@ -21,5 +21,7 @@ data class TaskModel(
 
 @Immutable
 data class TasksModel(
-    val tasks: List<TaskModel>
+    val tasks: Map<TaskId, TaskModel>
 ) : BaseModel()
+
+typealias TaskId = String
