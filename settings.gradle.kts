@@ -22,7 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "TasksApp"
 include(":app")
 include(":di")
-include(":Greeting")
+include(":greeting")
 include(":navigation:impl")
 include(":navigation:api")
 include(":ux:components")
@@ -31,3 +31,4 @@ include(":molecule-presenter:impl")
 include(":viewRenderer:api")
 include(":data:api")
 include(":viewRenderer:impl")
+include(":tasks")

@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":Greeting"))
+    implementation(project(":greeting"))
     implementation(project(":ux:components"))
 
     // DI
