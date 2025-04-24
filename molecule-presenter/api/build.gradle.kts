@@ -28,7 +28,7 @@ dependencies {
     api(libs.dagger)
     api(libs.anvil.annotations)
     kapt(libs.dagger.compiler)
-    implementation(libs.androidx.compose.bom)
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
