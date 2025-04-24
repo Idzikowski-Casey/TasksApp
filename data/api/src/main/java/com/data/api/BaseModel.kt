@@ -1,4 +1,4 @@
-package com.molecule_presenter.api.data
+package com.data.api
 
 /**
  * A Marker class for all UI data models within the app

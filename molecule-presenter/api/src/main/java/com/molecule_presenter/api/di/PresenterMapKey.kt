@@ -1,6 +1,6 @@
 package com.molecule_presenter.api.di
 
-import com.molecule_presenter.api.data.BaseModel
+import com.data.api.BaseModel
 import dagger.MapKey
 import kotlin.reflect.KClass
 
@@ -9,4 +9,4 @@ import kotlin.reflect.KClass
  */
 @MapKey
 @Retention(AnnotationRetention.RUNTIME)
-annotation class PresenterMapKey(val value: KClass<out BaseModel>)
+annotation class PresenterMapKey(val value: KClass<out com.data.api.BaseModel>)

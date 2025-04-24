@@ -3,7 +3,7 @@ package com.molecule_presenter.impl
 import com.application.di.scope.AppScope
 import com.molecule_presenter.api.Presenter
 import com.molecule_presenter.api.PresenterFactory
-import com.molecule_presenter.api.data.BaseModel
+import com.data.api.BaseModel
 import com.squareup.anvil.annotations.ContributesBinding
 import javax.inject.Inject
 import javax.inject.Provider
