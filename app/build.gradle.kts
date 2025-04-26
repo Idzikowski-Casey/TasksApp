@@ -42,11 +42,17 @@ android {
 }
 
 dependencies {
-    implementation(project(":greeting"))
-    implementation(project(":ux:components"))
 
-    // DI
+    // project modules
+    implementation(project(":greeting"))
+    implementation(project(":tasks"))
+    implementation(project(":ux:components"))
+    implementation(project(":molecule-presenter:impl"))
+    implementation(project(":viewRenderer:impl"))
     implementation(project(":di"))
+    implementation(project(":TasksScreen"))
+
+    // libraries
     implementation(libs.dagger)
     implementation(libs.anvil.annotations)
     kapt(libs.dagger.compiler)
@@ -59,6 +65,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.molecule)
 
 
     testImplementation(libs.junit)

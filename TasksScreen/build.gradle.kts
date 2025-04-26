@@ -1,13 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.anvil)
     alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "com.viewRenderer.api"
+    namespace = "com.application.tasksscreen"
     compileSdk = 35
 
     defaultConfig {
@@ -25,13 +24,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":di"))
     api(project(":data:api"))
-    api(libs.dagger)
-    api(libs.anvil.annotations)
+    api(project(":molecule-presenter:api"))
     kapt(libs.dagger.compiler)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.runtime.android)
-    implementation(libs.androidx.ui)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

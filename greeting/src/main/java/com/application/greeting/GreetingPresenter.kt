@@ -10,14 +10,6 @@ class GreetingPresenter @Inject constructor(): Presenter<GreetingModel>  {
 
     @Composable
     override fun present(model: GreetingModel): BaseModel {
-        return GreetingModel(
-            title = title,
-            subtitle = subtitle
-        )
-    }
-
-    companion object {
-        const val title = "Welcome to TaskApp"
-        const val subtitle = "The best task management app in the world"
+        return model
     }
 }

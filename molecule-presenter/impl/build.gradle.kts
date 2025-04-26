@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.anvil)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -26,7 +27,9 @@ android {
 dependencies {
     implementation(project(":molecule-presenter:api"))
     implementation(project(":di"))
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.runtime.android)
+    implementation(libs.molecule)
     api(libs.dagger)
     api(libs.anvil.annotations)
     kapt(libs.dagger.compiler)

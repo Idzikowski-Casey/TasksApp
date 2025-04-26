@@ -4,11 +4,11 @@ import androidx.compose.runtime.Immutable
 import com.data.api.BaseModel
 
 @Immutable
-enum class TaskStatus {
-    NEW,
-    IN_PROGRESS,
-    PENDING,
-    COMPLETED
+enum class TaskStatus(val value: String) {
+    NOT_STARTED("Not Started"),
+    IN_PROGRESS("In Progress"),
+    PENDING("Pending"),
+    COMPLETED("Completed")
 }
 
 @Immutable
