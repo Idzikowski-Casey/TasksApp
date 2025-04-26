@@ -1,0 +1,33 @@
+name: Android Gradle Build
+
+on:
+  pull_request:
+    branches:
+      - main   # or whatever your main branch is
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'  # or 'zulu', 'corretto', etc.
+          java-version: '17'       # match your app's Java version
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # Optional: Run unit tests separately
+      - name: Run Unit Tests
+        run: ./gradlew test
