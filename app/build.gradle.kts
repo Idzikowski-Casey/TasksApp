@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":molecule-presenter:impl"))
     implementation(project(":viewRenderer:impl"))
     implementation(project(":di"))
+    implementation(project(":TasksScreen"))
 
     // libraries
     implementation(libs.dagger)
@@ -64,6 +65,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.molecule)
 
 
     testImplementation(libs.junit)

@@ -14,5 +14,5 @@ import com.data.api.BaseModel
 interface ViewRenderer<T: BaseModel> {
 
     @Composable
-    fun Render(model: T, modifier: Modifier = Modifier)
+    fun Render(model: T, modifier: Modifier)
 }

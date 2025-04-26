@@ -8,6 +8,5 @@ import javax.inject.Inject
 @ContributesBinding(AppScope::class)
 class AppNavigatorImpl @Inject constructor(): AppNavigator {
     override fun navigateTo(route: String) {
-        TODO("Not yet implemented")
     }
 }

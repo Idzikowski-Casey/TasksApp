@@ -18,7 +18,7 @@ object TaskColors {
 
     fun getContainerColorForStatus(status: TaskStatus): Color {
         return when (status) {
-            TaskStatus.NEW -> Red60
+            TaskStatus.NOT_STARTED -> Red60
             TaskStatus.IN_PROGRESS -> Blue60
             TaskStatus.PENDING -> Yellow60
             TaskStatus.COMPLETED -> Green60
@@ -27,7 +27,7 @@ object TaskColors {
 
     fun getContentColorForStatus(status: TaskStatus): Color {
         return when (status) {
-            TaskStatus.NEW -> ContentRed
+            TaskStatus.NOT_STARTED -> ContentRed
             TaskStatus.IN_PROGRESS -> ContentBlue
             TaskStatus.PENDING -> ContentYellow
             TaskStatus.COMPLETED -> ContentGreen

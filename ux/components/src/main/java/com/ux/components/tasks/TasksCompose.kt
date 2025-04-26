@@ -35,7 +35,7 @@ fun TasksComposePreview() {
             Pair(
                 "1", TaskModel(
                     "Task 1", "This is the first task",
-                    TaskStatus.NEW, "1"
+                    TaskStatus.NOT_STARTED, "1"
                 )
             ),
             Pair(

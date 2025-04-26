@@ -5,7 +5,7 @@ import com.data.api.BaseModel
 
 @Immutable
 enum class TaskStatus(val value: String) {
-    NEW("New"),
+    NOT_STARTED("Not Started"),
     IN_PROGRESS("In Progress"),
     PENDING("Pending"),
     COMPLETED("Completed")

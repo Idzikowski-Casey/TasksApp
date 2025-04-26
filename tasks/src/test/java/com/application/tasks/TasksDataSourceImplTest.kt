@@ -85,7 +85,7 @@ class TasksDataSourceImplTest {
     companion object {
         const val TITLE = "title"
         const val DESC = "desc"
-        val STATUS = TaskStatus.NEW
+        val STATUS = TaskStatus.NOT_STARTED
         const val ID_1 = "id_1"
         const val ID_2 = "id_2"
         const val ID_3 = "id_3"

@@ -3,11 +3,10 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.anvil)
     alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.molecule_presenter.impl"
+    namespace = "com.application.tasksscreen"
     compileSdk = 35
 
     defaultConfig {
@@ -25,13 +24,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":molecule-presenter:api"))
     implementation(project(":di"))
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.runtime.android)
-    implementation(libs.molecule)
-    api(libs.dagger)
-    api(libs.anvil.annotations)
+    api(project(":data:api"))
+    api(project(":molecule-presenter:api"))
     kapt(libs.dagger.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
