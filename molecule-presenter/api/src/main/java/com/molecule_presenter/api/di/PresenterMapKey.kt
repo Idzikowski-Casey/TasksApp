@@ -9,4 +9,4 @@ import kotlin.reflect.KClass
  */
 @MapKey
 @Retention(AnnotationRetention.RUNTIME)
-annotation class PresenterMapKey(val value: KClass<out com.data.api.BaseModel>)
+annotation class PresenterMapKey(val value: KClass<out BaseModel>)
