@@ -1,7 +1,7 @@
 package com.molecule_presenter.api
 
 import androidx.compose.runtime.Composable
-import com.molecule_presenter.api.data.BaseModel
+import com.data.api.BaseModel
 
 /**
  * A base interface for all "presenters" within the app. Based on using

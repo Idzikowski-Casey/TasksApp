@@ -10,17 +10,23 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Greeting" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/api" />
             <option value="$PROJECT_DIR$/di" />
+            <option value="$PROJECT_DIR$/greeting" />
             <option value="$PROJECT_DIR$/molecule-presenter" />
             <option value="$PROJECT_DIR$/molecule-presenter/api" />
             <option value="$PROJECT_DIR$/molecule-presenter/impl" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/navigation/api" />
             <option value="$PROJECT_DIR$/navigation/impl" />
+            <option value="$PROJECT_DIR$/tasks" />
             <option value="$PROJECT_DIR$/ux" />
             <option value="$PROJECT_DIR$/ux/components" />
+            <option value="$PROJECT_DIR$/viewRenderer" />
+            <option value="$PROJECT_DIR$/viewRenderer/api" />
+            <option value="$PROJECT_DIR$/viewRenderer/impl" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,13 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.anvil)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.molecule_presenter.api"
+    namespace = "com.application.greeting"
     compileSdk = 35
 
     defaultConfig {
@@ -15,6 +15,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -25,16 +26,16 @@ android {
 }
 
 dependencies {
-    api(project(":data:api"))
-
-    api(libs.dagger)
-    api(libs.anvil.annotations)
-    kapt(libs.dagger.compiler)
     implementation(platform(libs.androidx.compose.bom))
+    api(project(":molecule-presenter:api"))
+    api(project(":viewRenderer:api"))
+    api(project(":data:api"))
+    implementation(libs.androidx.ui)
+    implementation(project(":ux:components"))
+    implementation(project(":di"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.runtime.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,6 +1,6 @@
 package com.molecule_presenter.api.di
 
-import com.molecule_presenter.api.data.BaseModel
+import com.data.api.BaseModel
 import dagger.MapKey
 import kotlin.reflect.KClass
 
