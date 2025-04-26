@@ -26,6 +26,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.ui)
     implementation(platform(libs.androidx.compose.bom))
     api(project(":molecule-presenter:api"))
     api(project(":viewRenderer:api"))

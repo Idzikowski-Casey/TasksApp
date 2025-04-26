@@ -32,7 +32,8 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(project(":ux:components"))
     implementation(project(":di"))
-
+    implementation(libs.androidx.ui)
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

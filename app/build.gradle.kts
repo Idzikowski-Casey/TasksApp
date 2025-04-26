@@ -42,11 +42,16 @@ android {
 }
 
 dependencies {
-    implementation(project(":greeting"))
-    implementation(project(":ux:components"))
 
-    // DI
+    // project modules
+    implementation(project(":greeting"))
+    implementation(project(":tasks"))
+    implementation(project(":ux:components"))
+    implementation(project(":molecule-presenter:impl"))
+    implementation(project(":viewRenderer:impl"))
     implementation(project(":di"))
+
+    // libraries
     implementation(libs.dagger)
     implementation(libs.anvil.annotations)
     kapt(libs.dagger.compiler)

@@ -10,15 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.data.api.models.GreetingModel
 import com.ux.components.dimensions.TaskDimensions
 import com.ux.components.theme.TasksAppTheme
 
 @Composable
-fun Greeting(model: GreetingModel) {
+fun GreetingCompose(model: GreetingModel, modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(TaskDimensions.s4.value),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -35,6 +34,6 @@ fun GreetingPreview() {
     val title = "Welcome to Tasks App"
     val subtitle = "This is a sample subtitle"
     TasksAppTheme {
-        Greeting(GreetingModel(title, subtitle))
+        GreetingCompose(GreetingModel(title, subtitle))
     }
 }
