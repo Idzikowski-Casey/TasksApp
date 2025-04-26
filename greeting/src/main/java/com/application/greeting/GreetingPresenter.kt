@@ -1,16 +1,11 @@
 package com.application.greeting
 
 import androidx.compose.runtime.Composable
-import com.application.di.scope.AppScope
 import com.data.api.BaseModel
 import com.data.api.models.GreetingModel
 import com.molecule_presenter.api.Presenter
-import com.molecule_presenter.api.PresenterKey
-import com.squareup.anvil.annotations.ContributesMultibinding
 import javax.inject.Inject
 
-@ContributesMultibinding(AppScope::class, boundType = Presenter::class)
-@PresenterKey(GreetingModel::class)
 class GreetingPresenter @Inject constructor(): Presenter<GreetingModel>  {
 
     @Composable

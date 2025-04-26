@@ -2,6 +2,7 @@ package com.data.api.datasource
 
 import com.data.api.models.TaskModel
 import com.data.api.models.TasksModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -10,15 +11,27 @@ import kotlinx.coroutines.flow.StateFlow
 interface TasksDataSource {
 
     /**
-     * Returns all tasks the user has created.
+     * Returns all current tasks the user has created as
+     * observable stateFlow
      */
-    fun getTasks(): StateFlow<TasksModel>
+    fun observeTasks(): StateFlow<TasksModel>
+
+    /**
+     * Returns a single task by its id as observable stateFlow.
+     * @param id The id of the task to retrieve.
+     */
+    fun observeTask(id: String): Flow<TaskModel>
+
+    /**
+     * Returns all current tasks the user has created.
+     */
+    fun getTasks(): TasksModel
 
     /**
      * Returns a single task by its id.
      * @param id The id of the task to retrieve.
      */
-    fun getTask(id: String): StateFlow<TaskModel>
+    fun getTask(id: String): TaskModel?
 
     /**
      * Adds a new task to the data source.
