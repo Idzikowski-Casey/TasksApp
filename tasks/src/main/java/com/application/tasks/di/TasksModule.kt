@@ -7,6 +7,7 @@ import com.application.tasks.TasksViewRenderer
 import com.data.api.BaseModel
 import com.data.api.models.TaskModel
 import com.data.api.models.TasksModel
+import com.data.api.models.TasksUIModel
 import com.molecule_presenter.api.Presenter
 import com.molecule_presenter.api.PresenterKey
 import com.squareup.anvil.annotations.ContributesTo
@@ -32,6 +33,6 @@ abstract class TasksModule {
 
     @Binds
     @IntoMap
-    @ViewRendererKey(TasksModel::class)
+    @ViewRendererKey(TasksUIModel::class)
     abstract fun bindsTasksViewRenderer(tasksViewRenderer: TasksViewRenderer): ViewRenderer<out BaseModel>
 }

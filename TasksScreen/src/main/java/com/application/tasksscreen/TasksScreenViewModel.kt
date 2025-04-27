@@ -53,34 +53,34 @@ class TasksScreenViewModel @Inject constructor(
         ),
         TasksModel(
             tasks = mapOf(
-                "1" to TaskModel(
+                1 to TaskModel(
                     title = "Task 1",
                     description = "This is the first task",
-                    id = "1",
+                    id = 1,
                     status = TaskStatus.COMPLETED
                 ),
-                "2" to TaskModel(
+                2 to TaskModel(
                     title = "Task 2",
                     description = "This is the second task",
-                    id = "2",
+                    id = 2,
                     status = TaskStatus.IN_PROGRESS
                 ),
-                "3" to TaskModel(
+                3 to TaskModel(
                     title = "Task 3",
                     description = "This is the third task",
-                    id = "3",
+                    id = 3,
                     status = TaskStatus.NOT_STARTED
                 ),
-                "4" to TaskModel(
+                4 to TaskModel(
                     title = "Task 4",
                     description = "This is the fourth task",
-                    id = "4",
+                    id = 4,
                     status = TaskStatus.PENDING
                 ),
-                "5" to TaskModel(
+                5 to TaskModel(
                     title = "Task 5",
                     description = "This is the fifth task",
-                    id = "5",
+                    id = 5,
                     status = TaskStatus.COMPLETED
                 )
             )

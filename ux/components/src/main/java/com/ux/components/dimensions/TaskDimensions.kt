@@ -20,5 +20,8 @@ enum class TaskDimensions(val value: Dp) {
     s10(40.dp),
     s11(44.dp),
     s12(48.dp),
-    s240(240.dp)
+    s240(240.dp),
+    s300(300.dp),
+    s400(400.dp),
+    s500(500.dp),
 }

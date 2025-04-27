@@ -22,7 +22,7 @@ class RootPresenterImpl @Inject constructor(
         return scope.launchMolecule(RecompositionMode.ContextClock, context = AndroidUiDispatcher.Main) {
             data.map {
                 // if presenter isn't recognized for data model - just return data model
-                presenterFactory.createPresenter<Presenter<BaseModel>>(it)?.present(it) ?: it
+                presenterFactory.createPresenter<Presenter<BaseModel>>(it)?.present(scope, it) ?: it
             }
         }
     }

@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,35 +17,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.data.api.models.TaskModel
 import com.data.api.models.TaskStatus
+import com.data.api.models.TaskUIModel
 import com.ux.components.dimensions.TaskDimensions
 import com.ux.components.theme.TasksAppTheme
 
 @Composable
-fun TaskCompose(data: TaskModel, modifier: Modifier = Modifier) {
-    ElevatedCard(
-        modifier = modifier
-            .fillMaxWidth(.80f),
-        elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = TaskDimensions.s2.value
-        ),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-        )
-    ) {
+fun TaskCompose(data: TaskUIModel, modifier: Modifier = Modifier) {
+    TaskContainerCompose(modifier) {
         Box(
             Modifier
                 .padding(TaskDimensions.s2.value)
                 .fillMaxWidth()
         ) {
-            TaskInfo(title = data.title, description = data.description)
-            TasksDeleteCompose(modifier = Modifier.align(Alignment.TopEnd), onDelete = {})
-            TaskStatus(modifier = Modifier.align(Alignment.BottomEnd), status = data.status)
+            TaskInfo(title = data.task.title, description = data.task.description)
+            TasksDeleteCompose(
+                modifier = Modifier.align(Alignment.TopEnd),
+                taskTitle = data.task.title,
+                onDelete = data.onDelete
+            )
+            TaskStatus(modifier = Modifier.align(Alignment.BottomEnd), status = data.task.status)
         }
     }
 }
 
 @Composable
-fun TaskInfo(modifier: Modifier = Modifier,title: String, description: String) {
+fun TaskInfo(modifier: Modifier = Modifier, title: String, description: String) {
     Column(modifier) {
         Text(text = title, style = MaterialTheme.typography.titleLarge)
         Text(text = description, style = MaterialTheme.typography.bodyMedium)
@@ -80,11 +74,18 @@ fun TaskStatus(modifier: Modifier = Modifier, status: TaskStatus) {
 @Preview
 @Composable
 fun TaskComposePreview() {
+    val data = TaskUIModel(
+        task = TaskModel("Title", "Description", TaskStatus.COMPLETED, 1),
+        onDelete = {}
+    )
+
     TasksAppTheme {
-        Box(modifier = Modifier
-            .padding(TaskDimensions.s4.value)
-            .fillMaxWidth()) {
-            TaskCompose(TaskModel("Title", "Description", TaskStatus.COMPLETED, "1"))
+        Box(
+            modifier = Modifier
+                .padding(TaskDimensions.s4.value)
+                .fillMaxWidth()
+        ) {
+            TaskCompose(data)
         }
     }
 }
