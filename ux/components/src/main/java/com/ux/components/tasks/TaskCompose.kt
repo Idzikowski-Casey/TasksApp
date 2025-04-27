@@ -30,14 +30,18 @@ fun TaskCompose(data: TaskUIModel, modifier: Modifier = Modifier) {
                 .fillMaxWidth()
         ) {
             TaskInfo(title = data.task.title, description = data.task.description)
-            TasksDeleteCompose(modifier = Modifier.align(Alignment.TopEnd), onDelete = data.onDelete)
+            TasksDeleteCompose(
+                modifier = Modifier.align(Alignment.TopEnd),
+                taskTitle = data.task.title,
+                onDelete = data.onDelete
+            )
             TaskStatus(modifier = Modifier.align(Alignment.BottomEnd), status = data.task.status)
         }
     }
 }
 
 @Composable
-fun TaskInfo(modifier: Modifier = Modifier,title: String, description: String) {
+fun TaskInfo(modifier: Modifier = Modifier, title: String, description: String) {
     Column(modifier) {
         Text(text = title, style = MaterialTheme.typography.titleLarge)
         Text(text = description, style = MaterialTheme.typography.bodyMedium)
@@ -76,9 +80,11 @@ fun TaskComposePreview() {
     )
 
     TasksAppTheme {
-        Box(modifier = Modifier
-            .padding(TaskDimensions.s4.value)
-            .fillMaxWidth()) {
+        Box(
+            modifier = Modifier
+                .padding(TaskDimensions.s4.value)
+                .fillMaxWidth()
+        ) {
             TaskCompose(data)
         }
     }
