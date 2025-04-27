@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.application.tasks.datasource.TasksDataSourceImpl
 import com.data.api.models.TaskModel
 import com.data.api.models.TaskStatus
+import com.data.api.models.TasksModel
 import io.kotest.matchers.maps.shouldNotHaveKey
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -82,13 +83,48 @@ class TasksDataSourceImplTest {
         dataSource.clear()
     }
 
+    @Test
+    fun `test updateTasks, with tasks, emits expected tasks`() = runTest {
+        dataSource.observeTasks().test {
+            assert(awaitItem().tasks.isEmpty())
+
+            dataSource.updateTasks(TasksModel(tasks.associateBy { it.id }))
+            awaitItem()
+            awaitItem()
+            assert(awaitItem().tasks.size == 3)
+        }
+        dataSource.clear()
+    }
+
+    @Test
+    fun `test addTask, with a repeating id, task id is changed`() = runTest {
+        dataSource.observeTasks().test {
+            assert(awaitItem().tasks.isEmpty())
+            tasks.forEach { dataSource.addTask(it) }
+            awaitItem()
+            awaitItem()
+
+            val taskModel = awaitItem()
+            assert(taskModel.tasks.size == 3)
+            assert(ID_3 in taskModel.tasks)
+
+            // add task with same id as last item
+            dataSource.addTask(TaskModel(TITLE, DESC, STATUS, ID_3))
+            val updatedTasks = awaitItem()
+            assert(updatedTasks.tasks.size == 4)
+            assert(ID_4 in updatedTasks.tasks)
+        }
+        dataSource.clear()
+    }
+
     companion object {
         const val TITLE = "title"
         const val DESC = "desc"
         val STATUS = TaskStatus.NOT_STARTED
-        const val ID_1 = "id_1"
-        const val ID_2 = "id_2"
-        const val ID_3 = "id_3"
+        const val ID_1 = 1
+        const val ID_2 = 2
+        const val ID_3 = 3
+        const val ID_4 = 4
 
         const val UPDATED_TITLE = "updatedTitle"
 

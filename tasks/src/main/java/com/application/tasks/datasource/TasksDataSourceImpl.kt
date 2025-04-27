@@ -20,19 +20,23 @@ class TasksDataSourceImpl @Inject constructor() : TasksDataSource {
 
     override fun observeTasks(): StateFlow<TasksModel> = tasks
 
-    override fun observeTask(id: String): Flow<TaskModel> {
+    override fun observeTask(id: Int): Flow<TaskModel> {
         return tasks.transform { it.tasks[id]?.let { emit(it) } }
     }
 
     override fun getTasks(): TasksModel = tasks.value
 
-    override fun getTask(id: String): TaskModel? = tasks.value.tasks[id]
+    override fun getTask(id: Int): TaskModel? = tasks.value.tasks[id]
 
     override fun addTask(task: TaskModel) {
-        tasks.value = tasks.value.copy(tasks = tasks.value.tasks + (task.id to task))
+        // calculate new id if adding task id is taken already
+        val id = getNextId(tasks.value).takeIf { task.id in tasks.value.tasks } ?: task.id
+
+        val newTask = task.copy(id = id)
+        tasks.value = tasks.value.copy(tasks = tasks.value.tasks + (newTask.id to newTask))
     }
 
-    override fun deleteTask(id: String) {
+    override fun deleteTask(id: Int) {
         tasks.value = tasks.value.copy(tasks = tasks.value.tasks - id)
     }
 
@@ -42,7 +46,18 @@ class TasksDataSourceImpl @Inject constructor() : TasksDataSource {
         tasks.value = tasks.value.copy(tasks = newTasks)
     }
 
+    override fun updateTasks(tasksModel: TasksModel) {
+        clear()
+        tasksModel.tasks.forEach {
+            addTask(it.value)
+        }
+    }
+
     override fun clear() {
         tasks.value = TasksModel(emptyMap())
+    }
+
+    private fun getNextId(tasks: TasksModel): Int? {
+        return tasks.tasks.keys.maxByOrNull { it }?.plus(1)
     }
 }

@@ -2,6 +2,7 @@ package com.molecule_presenter.api
 
 import androidx.compose.runtime.Composable
 import com.data.api.BaseModel
+import kotlinx.coroutines.CoroutineScope
 
 /**
  * A base interface for all "presenters" within the app. Based on using
@@ -17,8 +18,9 @@ interface Presenter<T: BaseModel> {
      * display ready data.
      *
      * @param model [BaseModel]
+     * @param scope [CoroutineScope]
      * @return [BaseModel]
      */
     @Composable
-    fun present(model: T): BaseModel
+    fun present(scope: CoroutineScope, model: T): BaseModel
 }

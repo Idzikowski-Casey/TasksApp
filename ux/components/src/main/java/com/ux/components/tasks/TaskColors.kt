@@ -16,6 +16,8 @@ object TaskColors {
     private val ContentBlue = Color(0x99072333)
     private val ContentYellow = Color(0x995B5416)
 
+    // region status colors
+
     fun getContainerColorForStatus(status: TaskStatus): Color {
         return when (status) {
             TaskStatus.NOT_STARTED -> Red60
@@ -33,4 +35,14 @@ object TaskColors {
             TaskStatus.COMPLETED -> ContentGreen
         }
     }
+
+    // end region
+
+    // region add icon color
+
+    fun getAddIconContainerColor(): Color = Green60
+
+    fun getAddIconContentColor(): Color = ContentRed
+
+    // endregion
 }

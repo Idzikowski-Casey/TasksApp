@@ -3,6 +3,8 @@ package com.data.api.models
 import androidx.compose.runtime.Immutable
 import com.data.api.BaseModel
 
+// region business models
+
 @Immutable
 enum class TaskStatus(val value: String) {
     NOT_STARTED("Not Started"),
@@ -16,7 +18,7 @@ data class TaskModel(
     val title: String,
     val description: String,
     val status: TaskStatus,
-    val id: String
+    val id: Int
 ): BaseModel()
 
 @Immutable
@@ -24,4 +26,22 @@ data class TasksModel(
     val tasks: Map<TaskId, TaskModel>
 ) : BaseModel()
 
-typealias TaskId = String
+typealias TaskId = Int
+
+// endregion
+// region UI Models
+
+@Immutable
+data class TaskUIModel(
+    val task: TaskModel,
+    val onDelete: () -> Unit
+) : BaseModel()
+
+@Immutable
+data class TasksUIModel(
+    val tasks: List<TaskUIModel>,
+    val shouldShowAddTask: Boolean = true,
+    val onAddTask: () -> Unit = {}
+) : BaseModel()
+
+// endregion
