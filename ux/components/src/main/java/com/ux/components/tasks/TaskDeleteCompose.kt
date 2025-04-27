@@ -44,7 +44,10 @@ fun TasksDeleteCompose(taskTitle: String, onDelete: () -> Unit, modifier: Modifi
         BasicAlertDialog(onDismissRequest = { showDialog = false }) {
             DeleteDialogContent(
                 title = taskTitle,
-                onDelete = onDelete,
+                onDelete = {
+                    onDelete()
+                    showDialog = false
+                },
                 onCancel = { showDialog = false })
         }
     }

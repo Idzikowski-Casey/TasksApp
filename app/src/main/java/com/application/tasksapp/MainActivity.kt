@@ -8,6 +8,8 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -42,10 +44,10 @@ class MainActivity : ComponentActivity() {
                     val state by viewModel.observeScreenState().collectAsState()
                     val models by state.models.collectAsState()
 
-                    Column(modifier = Modifier.padding(innerPadding)) {
-                        models.forEach {
-                            val renderer = viewRendererFactory.createViewRenderer<ViewRenderer<BaseModel>>(it)
-                            renderer?.Render(it, Modifier)
+                    LazyColumn(Modifier.padding(innerPadding)) {
+                        itemsIndexed(models) { index, model ->
+                            val renderer = viewRendererFactory.createViewRenderer<ViewRenderer<BaseModel>>(model)
+                            renderer?.Render(model, Modifier)
                         }
                     }
                 }
