@@ -34,7 +34,7 @@ import com.ux.components.theme.TasksAppTheme
 fun TasksDeleteCompose(taskTitle: String, onDelete: () -> Unit, modifier: Modifier = Modifier) {
     var showDialog by remember { mutableStateOf(false) }
 
-    IconButton(onClick = { showDialog = true }, modifier = modifier.size(TaskDimensions.s4.value)) {
+    IconButton(onClick = { showDialog = true }, modifier = modifier) {
         Icon(
             imageVector = Icons.Filled.Delete,
             contentDescription = "Delete"
