@@ -29,10 +29,11 @@ import com.ux.components.dimensions.TaskDimensions
 fun TaskStatus(
     modifier: Modifier = Modifier,
     status: TaskStatus,
-    onStatusSelect: (TaskStatus) -> Unit = {}
+    isStatusMenuShown: Boolean = false,
+    onStatusSelect: () -> Unit = {},
+    onStatusDismiss: () -> Unit = {},
+    onStatusChange: (TaskStatus) -> Unit = {}
 ) {
-    var isMenuExpanded by remember { mutableStateOf(false) }
-
     val buttonColors = IconButtonColors(
         containerColor = TaskColors.getContainerColorForStatus(status),
         contentColor = TaskColors.getContentColorForStatus(status),
@@ -42,7 +43,7 @@ fun TaskStatus(
     FilledTonalIconButton(
         modifier = modifier,
         colors = buttonColors,
-        onClick = { isMenuExpanded = true }
+        onClick = onStatusSelect
     ) {
         Icon(
             imageVector = TaskStatusIcons.getIcon(status),
@@ -50,12 +51,10 @@ fun TaskStatus(
         )
     }
     TaskStatusPicker(
-        expanded = isMenuExpanded,
-        onDismiss = { isMenuExpanded = false },
-        onSelect = { selectedStatus ->
-            isMenuExpanded = false
-            onStatusSelect(selectedStatus)
-        })
+        expanded = isStatusMenuShown,
+        onDismiss = onStatusDismiss,
+        onSelect = onStatusChange
+    )
 }
 
 @Composable

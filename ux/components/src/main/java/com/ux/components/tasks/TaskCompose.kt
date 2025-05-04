@@ -27,8 +27,20 @@ fun TaskCompose(data: TaskUIModel, modifier: Modifier = Modifier) {
         ) {
             TaskInfo(title = data.task.title, description = data.task.description)
             Row(Modifier.align(Alignment.CenterEnd)) {
-                TaskStatus(status = data.task.status, onStatusSelect = data.onStatusSelect)
-                TasksDeleteCompose(taskTitle = data.task.title, onDelete = data.onDelete)
+                TaskStatus(
+                    status = data.task.status,
+                    isStatusMenuShown = data.isStatusMenuShown,
+                    onStatusSelect = data.onStatusSelect,
+                    onStatusDismiss = data.onStatusDismiss,
+                    onStatusChange = data.onStatusChange
+                )
+                TasksDeleteCompose(
+                    taskTitle = data.task.title,
+                    isDeleteDialogShown = data.isDeleteDialogShown,
+                    onDeleteConfirm = data.onDeleteConfirm,
+                    onDeleteDismiss = data.onDeleteDismiss,
+                    onDelete = data.onDelete
+                )
             }
         }
     }
