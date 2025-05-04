@@ -19,7 +19,7 @@ data class TaskModel(
     val description: String,
     val status: TaskStatus,
     val id: Int
-): BaseModel()
+) : BaseModel()
 
 @Immutable
 data class TasksModel(
@@ -31,9 +31,14 @@ typealias TaskId = Int
 // endregion
 // region UI Models
 
+/**
+ * Model for the Task UI - supports Deletion of task and
+ * changing of Status.
+ */
 @Immutable
 data class TaskUIModel(
     val task: TaskModel,
+    val detailsEdit: TaskEditUIModel = TaskEditUIModel(),
     val isDeleteDialogShown: Boolean = false,
     val isStatusMenuShown: Boolean = false,
     val onDelete: () -> Unit = {},
@@ -44,6 +49,25 @@ data class TaskUIModel(
     val onStatusChange: (TaskStatus) -> Unit = {}
 ) : BaseModel()
 
+/**
+ * A specific model to be used for the Task Details editing for:
+ * Title
+ * Description
+ */
+@Immutable
+data class TaskEditUIModel(
+    val currentTitle: String = "",
+    val currentDescription: String = "",
+    val onCancel: () -> Unit = {},
+    val onSave: (title: String, description: String) -> Unit = { _, _ -> },
+    val isEditDialogShown: Boolean = false,
+    val onEdit: () -> Unit = {},
+    val onEditDismiss: () -> Unit = {},
+) : BaseModel()
+
+/**
+ * Aggregate Tasks UI model. Supports adding a new task
+ */
 @Immutable
 data class TasksUIModel(
     val tasks: List<TaskUIModel>,

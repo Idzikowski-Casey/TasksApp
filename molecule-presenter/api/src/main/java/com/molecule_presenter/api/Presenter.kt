@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
  * Each Presenter is bound to [BaseModel] of type T. But can produce a different typed
  * [BaseModel] depending upon the business logic.
  */
-interface Presenter<T: BaseModel> {
+interface BasePresenter<T : BaseModel> {
 
     /**
      * The main fun of the presenter, called by presenter root tree to get
@@ -24,3 +24,17 @@ interface Presenter<T: BaseModel> {
     @Composable
     fun present(scope: CoroutineScope, model: T): BaseModel
 }
+
+/**
+ * Top level presenter meant to be multibinded to the [BaseModel]
+ *
+ * Included in the top level factory
+ */
+interface Presenter<T : BaseModel> : BasePresenter<T>
+
+/**
+ * Sub presenter meant to be composed within [Presenter] classes.
+ *
+ * Not included at the top level factory
+ */
+interface SubPresenter<T : BaseModel> : BasePresenter<T>

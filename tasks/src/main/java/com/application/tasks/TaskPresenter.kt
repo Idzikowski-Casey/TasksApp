@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.data.api.BaseModel
 import com.data.api.datasource.TasksDataSource
+import com.data.api.models.TaskEditUIModel
 import com.data.api.models.TaskModel
 import com.data.api.models.TaskUIModel
 import com.molecule_presenter.api.Presenter
@@ -23,6 +24,7 @@ class TaskPresenter @Inject constructor(
 
         return TaskUIModel(
             task = model,
+            detailsEdit = taskEditComposable(model),
             isDeleteDialogShown = isDeleteDialogShown,
             isStatusMenuShown = isStatusMenuShown,
             onDelete = {
@@ -46,6 +48,27 @@ class TaskPresenter @Inject constructor(
                 val newModel = model.copy(status = it)
                 tasksDataSource.updateTask(newModel)
             }
+        )
+    }
+
+    @Composable
+    private fun taskEditComposable(model: TaskModel): TaskEditUIModel {
+        var isEditDialogShown by remember { mutableStateOf(false) }
+
+        return TaskEditUIModel(
+            currentTitle = model.title,
+            currentDescription = model.description,
+            onSave = { title, description ->
+                isEditDialogShown = false
+                tasksDataSource.updateTask(model.copy(title = title, description = description))
+            },
+            isEditDialogShown = isEditDialogShown,
+            onEdit = {
+                isEditDialogShown = true
+            },
+            onEditDismiss = {
+                isEditDialogShown = false
+            },
         )
     }
 }
