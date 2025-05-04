@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -20,10 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ux.components.dimensions.TaskDimensions
@@ -31,24 +26,28 @@ import com.ux.components.theme.TasksAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TasksDeleteCompose(taskTitle: String, onDelete: () -> Unit, modifier: Modifier = Modifier) {
-    var showDialog by remember { mutableStateOf(false) }
+fun TasksDeleteCompose(
+    taskTitle: String,
+    modifier: Modifier = Modifier,
+    isDeleteDialogShown: Boolean = false,
+    onDeleteConfirm: () -> Unit = {},
+    onDeleteDismiss: () -> Unit = {},
+    onDelete: () -> Unit = {}
+) {
 
-    IconButton(onClick = { showDialog = true }, modifier = modifier.size(TaskDimensions.s4.value)) {
+    IconButton(onClick = onDelete, modifier = modifier) {
         Icon(
             imageVector = Icons.Filled.Delete,
             contentDescription = "Delete"
         )
     }
-    if (showDialog) {
-        BasicAlertDialog(onDismissRequest = { showDialog = false }) {
+    if (isDeleteDialogShown) {
+        BasicAlertDialog(onDismissRequest = onDeleteDismiss) {
             DeleteDialogContent(
                 title = taskTitle,
-                onDelete = {
-                    onDelete()
-                    showDialog = false
-                },
-                onCancel = { showDialog = false })
+                onDelete = onDeleteConfirm,
+                onCancel = onDeleteDismiss
+            )
         }
     }
 }
@@ -61,7 +60,10 @@ fun DeleteDialogContent(title: String, onDelete: () -> Unit, onCancel: () -> Uni
             containerColor = MaterialTheme.colorScheme.surface,
         )
     ) {
-        Column(Modifier.padding(TaskDimensions.s4.value), verticalArrangement = Arrangement.spacedBy(TaskDimensions.s2.value)) {
+        Column(
+            Modifier.padding(TaskDimensions.s4.value),
+            verticalArrangement = Arrangement.spacedBy(TaskDimensions.s2.value)
+        ) {
             Text("Delete: $title", style = MaterialTheme.typography.titleLarge)
             Text(
                 "Are you sure you want to delete this task?",
@@ -71,7 +73,7 @@ fun DeleteDialogContent(title: String, onDelete: () -> Unit, onCancel: () -> Uni
                 Button(onClick = onDelete) {
                     Text("Delete")
                 }
-                OutlinedButton (onClick = onCancel) {
+                OutlinedButton(onClick = onCancel) {
                     Text("Cancel")
                 }
             }

@@ -42,7 +42,7 @@ fun TasksCompose(model: TasksUIModel, modifier: Modifier = Modifier) {
 fun AddTaskCompose(onAddTask: () -> Unit) {
 
     TaskContainerCompose(Modifier) {
-        IconButton (
+        IconButton(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .heightIn(max = TaskDimensions.s8.value)
@@ -61,19 +61,15 @@ fun TasksComposePreview() {
         tasks = listOf(
             TaskUIModel(
                 task = TaskModel("Title", "Description", TaskStatus.COMPLETED, 1),
-                onDelete = {}
             ),
             TaskUIModel(
                 task = TaskModel("Title", "Description", TaskStatus.PENDING, 2),
-                onDelete = {}
             ),
             TaskUIModel(
                 task = TaskModel("Title", "Description", TaskStatus.IN_PROGRESS, 3),
-                onDelete = {}
             ),
             TaskUIModel(
                 task = TaskModel("Title", "Description", TaskStatus.NOT_STARTED, 4),
-                onDelete = {}
             )
         )
     )

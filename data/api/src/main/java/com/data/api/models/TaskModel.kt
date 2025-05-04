@@ -34,7 +34,14 @@ typealias TaskId = Int
 @Immutable
 data class TaskUIModel(
     val task: TaskModel,
-    val onDelete: () -> Unit
+    val isDeleteDialogShown: Boolean = false,
+    val isStatusMenuShown: Boolean = false,
+    val onDelete: () -> Unit = {},
+    val onDeleteConfirm: () -> Unit = {},
+    val onDeleteDismiss: () -> Unit = {},
+    val onStatusSelect: () -> Unit = {},
+    val onStatusDismiss: () -> Unit = {},
+    val onStatusChange: (TaskStatus) -> Unit = {}
 ) : BaseModel()
 
 @Immutable
