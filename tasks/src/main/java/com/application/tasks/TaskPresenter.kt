@@ -11,13 +11,17 @@ import javax.inject.Inject
 
 class TaskPresenter @Inject constructor(
     private val tasksDataSource: TasksDataSource
-): Presenter<TaskModel> {
+) : Presenter<TaskModel> {
     @Composable
     override fun present(scope: CoroutineScope, model: TaskModel): BaseModel {
         return TaskUIModel(
             task = model,
             onDelete = {
                 tasksDataSource.deleteTask(model.id)
+            },
+            onStatusSelect = {
+                val newModel = model.copy(status = it)
+                tasksDataSource.updateTask(newModel)
             }
         )
     }
